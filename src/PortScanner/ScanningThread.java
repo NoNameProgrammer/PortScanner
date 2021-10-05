@@ -18,8 +18,6 @@ public class ScanningThread implements Runnable{
     @Override
     public void run() {
 
-        Writer writer = new Writer();
-
         for (Integer port : ports) {
             try {
                 InetSocketAddress inetSocketAddress = new InetSocketAddress(host, port);
@@ -27,10 +25,10 @@ public class ScanningThread implements Runnable{
                 Socket socket = new Socket();
                 socket.connect(inetSocketAddress, 50);
                 socket.close();
-
-                writer.writeFile("host:" + host + " \t" + "port:"+ port + " is open ✓" + '\n');
+                System.out.printf("%c", '✓');
+                Writer.writeFile("host:" + host + " \t" + "port:"+ port + " is open ✓" + '\n');
             } catch (IOException ex) {
-
+                System.out.printf("%c", '✘');
             }
         }
     }

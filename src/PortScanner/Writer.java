@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Writer {
 
-    public void writeFile(String output) {
+    public static void writeFile(String output) {
 
         try(FileWriter writer = new FileWriter("result of scan.txt", true))
         {

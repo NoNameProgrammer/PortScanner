@@ -22,8 +22,7 @@ public class PortScanner {
         ArrayList<String> hostList = parser.getHost(inputText);
         ArrayList<Integer> portList = parser.getPort(inputText);
 
-        Writer writer = new Writer();
-        writer.writeFile( "---" + getDate() + '\n');
+        Writer.writeFile( "---" + getDate() + '\n');
         Collections.shuffle(portList);
 
         ExecutorService thread = Executors.newFixedThreadPool(parser.numberOfThread(inputText));
@@ -31,7 +30,7 @@ public class PortScanner {
         for (int i = 0; i < hostList.size(); i++) {
             thread.execute(new ScanningThread(hostList.get(i), portList));
         }
-        System.out.println("Check result of scan.txt");
         thread.shutdown();
+        System.out.println("Check result of scan.txt");
     }
 }
